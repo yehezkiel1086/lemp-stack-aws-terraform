@@ -236,3 +236,89 @@ setelah itu kita buka ssh/telnet dari os aws yang telah kita buat sehingga kita 
 ubuntu sudah dapat diakses
 
 <img src='imgs/6.png' />
+
+## Clone dan Setup Laravel
+
+karena semua tools yang kita butuhkan untuk mendeploy aplikasi laravel dengan nginx telah diinstall sekarang kita tinggal melakukan instalasi aplikasi itu sendiri.
+
+pertama, pastikan dulu kalau mysql dan nginx telah berjalan (akan lebih mudah jika kita merupakan super user)
+
+jadilah super user
+
+```
+sudo su
+```
+
+check apakah mysql dan nginx telah berjalan
+
+```
+systemctl status mysql
+systemctl status nginx
+```
+
+apabila mysql atau nginx masih belum berjalan, kita jalankan script berikut
+
+```
+systemctl start mysql
+systemctl enable mysql
+systemctl start nginx
+systemctl enable nginx
+```
+
+hal pertama yang kita lakukan adalah clone aplikasi yang telah disediakan.
+
+```
+git clone https://gitlab.com/kuuhaku86/web-penugasan-individu
+```
+
+setelah itu kita akan mengganti nama folder aplikasi tersebut menjadi "laravel" sehingga lebih mudah
+
+```
+mv web-penugasan-individu laravel
+```
+
+setelah itu masuk ke dalam aplikasi tersebut
+
+```
+cd laravel
+```
+
+kita install dan melakukan migrasi database
+
+```
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+```
+
+## Konfigurasi Laravel
+
+untuk melakukan konfigurasi laravel, pada main dir laravel, kita lakukan
+
+```
+nano .env
+```
+
+berikut merupakan konfigurasinya
+
+```
+APP_NAME=Laravel
+APP_ENV=development
+APP_KEY=APPLICATION_UNIQUE_KEY_DONT_COPY
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=kelompok7
+DB_PASSWORD=kelompok7
+```
+
+setelah itu "ctrl+x" lalu tekan "y"
+
+karena kita belum memiliki user bernama "kelompok7" kita sekarang membuat user tersebut
