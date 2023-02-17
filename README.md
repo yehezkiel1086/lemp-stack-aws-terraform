@@ -191,27 +191,27 @@ Digunakan untuk output public IP dari server.
 Dan langkah selanjutnya adalah membuat server ubuntu dan install tools untuk LEMP stack yang dibutuhkan untuk deploy laravel. Dapat diimplementasikan dengan code berikut : 
 
 	resource "aws_instance" "web-server-instance" {
-	ami = "ami-0557a15b87f6559cf"
-	instance_type = "t2.micro"
-	availability_zone = "us-east-1a"
-	key_name = ""  
-	network_interface {
-	device_index = 0
-	network_interface_id = aws_network_interface.web-server-nic.id
-	}
-				user_data = <<-EOF
-				sudo add-apt-repository ppa:ondrej/php
-				sudo apt-get install -y php7.4-{cli,fpm,mbstring,mysql,curl,mcrypt,xml}
-				sudo apt-get install -y mysql-server
-				sudo apt install -y nginx
-				sudo apt-get install -y git
-				sudo apt-get install -y zip unzip
-				php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-				php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-				php composer-setup.php
-				php -r "unlink('composer-setup.php');"
-				sudo mv composer.phar /usr/local/bin/composer
-				EOF
+		ami = "ami-0557a15b87f6559cf"
+		instance_type = "t2.micro"
+		availability_zone = "us-east-1a"
+		key_name = ""  
+		network_interface {
+		device_index = 0
+		network_interface_id = aws_network_interface.web-server-nic.id
+		}
+					user_data = <<-EOF
+					sudo add-apt-repository ppa:ondrej/php
+					sudo apt-get install -y php7.4-{cli,fpm,mbstring,mysql,curl,mcrypt,xml}
+					sudo apt-get install -y mysql-server
+					sudo apt install -y nginx
+					sudo apt-get install -y git
+					sudo apt-get install -y zip unzip
+					php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+					php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+					php composer-setup.php
+					php -r "unlink('composer-setup.php');"
+					sudo mv composer.phar /usr/local/bin/composer
+					EOF
 	tags = {
 	Name = "linux-ubuntu"
 		}
