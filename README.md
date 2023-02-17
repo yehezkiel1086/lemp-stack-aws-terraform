@@ -352,3 +352,81 @@ keluar dari mysql
 ```
 exit
 ```
+
+## Pengaturan Nginx
+
+setelah kita menginstall laravel, kita pindahkan folder laravel ke <code>/var/www/laravel</code>
+
+```
+sudo mv laravel /var/www/
+```
+
+lalu kita beri akses web server untuk melakukan write terhadap storage dan cache folder
+
+```
+sudo chown -R www-data.www-data /var/www/laravel/storage
+sudo chown -R www-data.www-data /var/www/laravel/bootstrap/cache
+```
+
+lalu kita konfigurasi nginx untuk melakukan serve konten laravel
+
+```
+sudo nano /etc/nginx/sites-available/laravel
+```
+
+berikut adalah isinya
+
+```
+server {
+    listen 80;
+    server_name 206.168.88.27;
+    root /var/www/laravel/public;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    error_page 404 /index.php;
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+
+```
+
+lalu copy konten ini ke <code>/etc/nginx/sites-available/travellist</code>
+
+```
+sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/laravel
+```
+
+untuk mengecek apakah ada syntax error
+
+```
+sudo nginx -t
+```
+
+setelah itu kita menjalankan kode berikut dan deploy pun berhasil dilakukan
+
+```
+sudo systemctl reload nginx
+```
