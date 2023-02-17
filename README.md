@@ -307,7 +307,7 @@ APP_NAME=Laravel
 APP_ENV=development
 APP_KEY=APPLICATION_UNIQUE_KEY_DONT_COPY
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://206.168.88.27
 
 LOG_CHANNEL=stack
 
