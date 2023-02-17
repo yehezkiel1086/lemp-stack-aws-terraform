@@ -1,5 +1,3 @@
-# oprec-ajk-2-web_deploy-group_7
-
 # Tugas Oprec Lab AJK 2 - Deploy LEMP Stack dengan Terraform dan AWS
 
 ### Anggota Kelompok:
