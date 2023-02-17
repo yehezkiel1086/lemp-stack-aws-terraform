@@ -322,3 +322,33 @@ DB_PASSWORD=kelompok7
 setelah itu "ctrl+x" lalu tekan "y"
 
 karena kita belum memiliki user bernama "kelompok7" kita sekarang membuat user tersebut
+
+buka mysql lalu login dengan menggunakan root user (yang bisa membuat user baru)
+
+```
+mysql -u root -p
+```
+
+buat user baru
+
+```
+CREATE USER 'kelompok7'@'localhost' IDENTIFIED BY 'kelompok7';
+```
+
+beri user permission pada kelompok7 terhadap database laravel
+
+```
+GRANT ALL PRIVILEGES ON laravel.* TO 'kelompok7'@'localhost'
+```
+
+lalu lakukan flushing untuk reload tabel grant untuk memastikan bahwa privilege yang telah diberikan memberi efek
+
+```
+FLUSH PRIVILEGES;
+```
+
+keluar dari mysql
+
+```
+exit
+```
