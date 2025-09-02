@@ -1,12 +1,6 @@
-# Tugas Oprec Lab AJK 2 - Deploy LEMP Stack dengan Terraform dan AWS
+# Deploy LEMP Stack dengan Terraform dan AWS
 
-### Anggota Kelompok:
-
-- Alfadito Aulia Denova (5025211157)
-- Mohammad Kamal (5025211180)
-- Yehezkiel Wiradhika (5025201086)
-
-### Soal
+### Permasalahan
 
 1. Membuat instance/server dan resource lainnya (apabila dibutuhkan) pada cloud provider menggunakan Terraform.
 
@@ -21,13 +15,6 @@
 6. Menambahkan konfigurasi SSL menggunakan certbot pada DNS aplikasi Laravel yang telah ter-deploy.
 
 7. Backup Log: melakukan otomasi backup access log pada NGINX setiap 1 jam dan menguploadnya ke Google Drive dan di folder masing masing kelompok.
-
-### Referensi
-
-- https://youtu.be/SLB_c_ayRMo
-- https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-nginx-on-ubuntu-20-04
-- https://www.clickittech.com/tutorial/deploy-laravel-on-aws-ec2/
-- https://techvblogs.com/blog/deploy-laravel-project-nginx-ubuntu
 
 ## Penjelasan code
 
@@ -430,3 +417,9 @@ setelah itu kita menjalankan kode berikut dan deploy pun berhasil dilakukan
 ```
 sudo systemctl reload nginx
 ```
+
+### Referensi
+
+- https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-laravel-with-nginx-on-ubuntu-20-04
+- https://www.clickittech.com/tutorial/deploy-laravel-on-aws-ec2/
+- https://techvblogs.com/blog/deploy-laravel-project-nginx-ubuntu
